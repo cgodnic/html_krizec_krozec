@@ -1,0 +1,370 @@
+body{
+	background-repeat: repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	background-image: url("photos/back.jpg");
+	margin: 0;
+}
+
+section {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+.column1 {
+	flex: 1;
+	flex-direction: column;
+	text-align: center;
+}
+
+.column2 {
+	flex: 7;
+	flex-direction: column;
+	text-align: center;
+}
+
+.header {
+	text-align: center;
+	color: #CFB53B;
+	font-size: 40px;
+	text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+	font-family: 'Press Start 2P', cursive;
+}
+
+h1{
+	margin: 30px;
+}
+
+.footer {
+	position: fixed;
+ 	bottom: 0;
+  	width: 100%;
+  	color: white;
+	text-align: left;
+	font-size: 10px;
+}
+
+/*dropdown menu*/
+
+ul.sidenav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: auto;
+}
+
+
+
+.sidebutton{
+	background-color: 	#4B0082;
+	color: #D5A624;
+	font-size: 20px;
+	padding: 10px 24px;
+	border-radius: 12px;
+	margin: 5px;
+	font-family: 'Bigshot One';
+	width: 200px;
+	position: center;
+	transition-duration: 0.4s;
+	opacity: 0.9;
+}
+
+.sidebutton:hover{
+	background-color: #2bb5ae;
+	color:#c12066;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.navodilo{
+	text-align:center;
+}
+
+
+p{
+	display: none;
+	background-color: #f2eecb;
+	text-align: left;
+	font-size: 14px;
+	font-family: 'Calligraffitti', cursive;
+	font-family: 'Cormorant Upright', serif;
+	font-family: 'Paprika', cursive;
+
+}
+
+h2{
+	display: none;
+	color: #8A0303;
+	text-align: center;
+	font-size: 45px;
+	font-family: 'Calligraffitti', cursive;
+}
+
+/*križec-krožec*/
+
+*, *::after, *::before {
+	box-sizing: border-box;
+  }
+  
+  :root {
+	--cell-size: 150px;
+	--mark-size: calc(var(--cell-size) * .9);
+  }
+  
+  .board {
+	width: 75vw;
+	height: 65vh;
+	display: grid;
+	justify-content: center;
+	align-content: center;
+	justify-items: center;
+	align-items: center;
+	border-collapse: collapse;
+  }
+  
+  .cell {
+	width: var(--cell-size);
+	height: var(--cell-size);
+	border: 6px solid #D5A624;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	cursor: pointer;
+  }
+
+  .cell:nth-child(1),
+  .cell:nth-child(2),
+  .cell:nth-child(3) {
+	border-top: none;
+  }
+  
+  .cell:nth-child(1),
+  .cell:nth-child(4),
+  .cell:nth-child(7) {
+	border-left: none;
+  }
+  
+  .cell:nth-child(3),
+  .cell:nth-child(6),
+  .cell:nth-child(9)  {
+	border-right: none;
+  }
+
+
+  .cell.x{
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-image: url(photos/xi.png);
+  }
+
+  .cell.circle{
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-image: url(photos/thumbnail.png);
+  }
+
+
+
+.winning-message {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(71, 11, 81, .9);
+  justify-content: center;
+  align-items: center;
+  color: #D5A624;
+  font-family: 'Press Start 2P', cursive;
+  text-shadow: -2px 0 #4881b1, 0 2px #4881b1, 2px 0 #4881b1, 0 -2px #4881b1;
+  font-size: 4rem;
+  flex-direction: column;
+}
+
+.winning-message button {
+  font-family: 'Bigshot One';
+  font-size: 3rem;
+  background-color: #fc905d;
+  border: 1px solid #4881b1;
+  color: #4881b1;
+  padding: .25em .5em;
+  margin: 10px;
+}  
+.winning-message button:hover {
+  font-family: 'Bigshot One';
+  background-color: #4881b1;
+  color: #fc905d;
+  border-color: #fc905d;
+}
+
+.winning-message.show {
+  display: flex;
+}
+
+/*Counter*/
+.counter{
+	border: 3px solid #D5A624;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 20px;
+	font-family: 'Press Start 2P', cursive;
+	color: rgb(204, 64, 9);
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.xwins{
+  border: 3px solid #D5A624;
+  background-color: #e22e8f;
+  height: 60px;
+}
+
+.allGames{
+  border: 3px solid #D5A624;
+  background-color:#5a3e7e;
+}
+
+.ywins{
+  border: 3px solid #D5A624;
+  background-color: #27b4f5;
+  height: 60px;
+}
+
+.xcount{
+  border: 3px solid #D5A624;
+  width: 150px;
+  height: 100px;
+  background-color: #f6dbd0;
+  font-size: 50px;
+}
+
+.allGamess{
+  border: 3px solid #D5A624;
+  font-size: 50px;
+  background-color: #348a8f;
+}
+
+.ycount{
+  border: 3px solid #D5A624;
+  width: 150px;
+  height: 100px;
+  background-color: #20d8ac;
+  font-size: 50px;
+}
+
+.counterTable{
+  border: 3px solid #D5A624;
+  width: 90%;
+  border-collapse: collapse;
+  margin: 30px;
+}
+
+/*Leaderboard*/
+.playernn,
+.playern,
+.winration{
+  font-family: 'Press Start 2P', cursive;
+  color: rgb(204, 64, 9);
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  border: 1px solid #D5A624;
+  height: 60px;
+  font-size: 40px;
+  background-color: #5a3e7e;
+  width: 30%;
+}
+
+
+
+.player1,
+.player2,
+.winratio{
+  font-family: 'Bigshot One';
+  color: black;
+  text-shadow: -1px 0 rgb(139, 128, 128), 0 1px rgb(139, 128, 128), 1px 0 rgb(139, 128, 128), 0 -1px rgb(139, 128, 128);
+  border: 1px solid #D5A624;
+  height: 40px;
+  font-size: 25px;
+  background-color: #348a8f;
+}
+
+
+
+@media (max-width: 1100px) {
+  section {
+	  flex-direction: column;
+  }
+  img{
+	  width: 100%;
+  }
+  .board{
+	  width: 100vw;
+	  height: 70vh;
+  }
+}
+
+@media (max-width: 1000px){
+  th {
+	  font-size: 20px;
+  }
+  td{
+	  font-size: 13px;
+  }
+}
+
+@media (max-width: 800px) {
+img{display: none;}
+p{
+   display: flex;
+}
+h2{
+   display: block;
+}
+.navodilo{
+   text-align: left;
+   font-size: 15px;
+   background-color: #f2eecb;
+}
+}
+
+@media (max-width: 530px) {
+  .header{
+	  font-size: 30px;
+  }
+  .sidebutton{
+	  font-size: 13px;
+	  width: 130px;
+  }
+  .board{
+	  height: 40vh;
+  }
+  :root {
+	  --cell-size: 100px;
+	}
+	.xwins,
+	.ywins,
+	.allGames{
+		width: 27%;
+		height: 30px;
+	}
+	.xcount,
+	.ycount,
+	.allGamess{
+		width: 27%;
+		height: 50px;
+		font-size: 30px;
+  }
+  .sidebutton{
+    margin-bottom: 10px;
+  }
+
+  .table{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .board {
+    width: 100vw;
+    height: 67vh;
+  }
+}

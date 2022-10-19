@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" lang="sl-SI">
+	<title> X-O </title>
+	<link rel="icon" href="photos/logo.png" type="image/x-icon">
+	<meta name="viewport" content="width=device-width, initial-scale=1">>
+	<link rel="stylesheet" type="text/css" href="tictac.css">
+	
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Bigshot+One&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Calligraffitti&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Calligraffitti&family=Cormorant+Upright:wght@600&family=Paprika&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+	
+	<!-- z ajax lahko delamo poizvedbe le na streznik, ki bo igral naso igro -->
+	
+	<script type="text/javascript">
+		// jo definiramo globalno
+		var xhttp = null;
+		var i=0;
+		var tabelaX = [];
+		const winCombos2 = [
+			[1, 2, 3],
+			[4, 5, 6],
+			[7, 8, 9],
+			[1, 4, 7],
+			[2, 5, 8],
+			[3, 6, 9],
+			[1, 5, 9],
+			[3, 5, 7]
+		];
+		const aiPlayer = 'x'
+
+
+
+		function moveReceived(argument) {
+			console.log("move received")
+			// trenutno stanje poizvedbe
+			if (xhttp.readyState == 4 && xhttp.status == 200){
+				if (document.getElementById(xhttp.responseText).innerHTML.length == 0){
+					document.getElementById(xhttp.responseText).classList.add(aiPlayer)
+					console.log("Napisal bom na mesto" + xhttp.responseText)
+					document.getElementById(xhttp.responseText).innerHTML= " "
+					document.getElementById(xhttp.responseText).removeEventListener('click', turnClick, false);/*ne pusti pisat na mesto x-a*/
+					tabelaX.push(Number(xhttp.responseText))
+					console.log("Tabela od X je " + tabelaX)
+					if (checkWinX() === true){
+					endGameX()
+					console.log("X je zmagu")
+					}
+				}else{
+					if (i<30){
+						serverPlay();
+						i++;
+					}
+				}
+			}
+		}
+		
+		function preveri(){
+			console.log(tabelaX)
+		}
+
+		function checkWinX() {
+			for (var n=0; n<8; n++){
+				if (checker(tabelaX,winCombos2[n]) === true){
+				return true;
+				}
+			}
+		}
+		function deleteXclass(){
+			for (var i = 0; i < cells.length; i++) {
+				cells[i].classList.remove(aiPlayer)
+  			}
+		}
+
+		function endGameX(){
+			tabelaX = []
+			winningMessageTextElement.innerText = "X's win!"
+			winningMessageElement.classList.add('show')
+			X_wins()
+			All_games()
+			playX();
+		}
+
+		function endGameO(){
+			tabelaX = []
+			winningMessageTextElement.innerText = "O's win!"
+			winningMessageElement.classList.add('show')
+			All_games()
+			Circle_wins()
+			playY();
+		}
+		
+		function endGameTie(){
+			tabelaX = []
+			winningMessageTextElement.innerText = 'Draw!';
+			winningMessageElement.classList.add('show')
+			All_games()
+			playDraw() 
+		}
+
+		function playX() {
+			var audio = document.getElementById("lose");
+			audio.play();
+		  }
+		  
+		function playY() {
+			var audio = document.getElementById("win");
+			audio.play();
+		 }
+		 
+		 function playDraw() {
+			var audio = document.getElementById("draw");
+			audio.play();
+ 		 }
+
+
+		function X_wins(){
+ 			var winX = document.getElementById('xcount')
+ 			var countx = parseInt(winX.innerHTML);
+  			countx++;
+ 			winX.innerHTML = countx.toString();
+		}
+
+		function Circle_wins(){
+  			var winCircle = document.getElementById('ycount')
+  			var countcircle = parseInt(winCircle.innerHTML);
+  			countcircle++;
+			 winCircle.innerHTML = countcircle.toString();
+		}
+
+		function All_games(){
+  			Games = document.getElementById('allGamess')
+  			countGames = parseInt(Games.innerHTML);
+ 			countGames++;
+ 			Games.innerHTML = countGames.toString();
+		}
+
+		function serverPlay() {
+			// nov ajax objekt
+			xhttp = new XMLHttpRequest();
+			// mu posljemo potezo;true-da zahtevo in gre naprej
+			xhttp.onreadystatechange = moveReceived;
+			xhttp.open("GET", "move.txt", true);
+			xhttp.send();
+		}
+	</script>
+</head>
+
+
+<body>
+	<head>
+	
+		<div class="header">
+			<h1>X VS O</h1>
+		</div>
+	</head>
+
+	<section>
+		<div class="column1">
+			<ul class="sidenav">
+					<a href="zacetna_stran.html"><button class="sidebutton"><span class="material-icons">videogame_asset</span><br>Change game style</button></a>
+					<!--<a href="table.html"><button class="sidebutton"><span class="material-icons">emoji_events</span><br>Best players of all time</button></a>-->
+			</ul>
+		</div>
+
+		<div class="column2">
+
+			<table class="board">
+				<tr><td class="cell" id="1"></td><td class="cell" id="2"></td><td class="cell" id="3"></td></tr>
+				<tr><td class="cell" id="4"></td><td class="cell" id="5"></td><td class="cell" id="6"></td></tr>
+				<tr><td class="cell" id="7" style="border-bottom: none"></td><td class="cell" id="8" style="border-bottom: none"></td><td class="cell" id="9" style="border-bottom: none"></td></tr>
+			</table>
+
+
+			<div class="winning-message" id="winningMessage">
+				<div data-winning-message-text ></div>
+				<button id="restartButton">Restart</button>
+			</div>
+
+			<audio id="click" src="music/click.mp3"></audio>
+			<audio id="win" src="music/win.mp3"></audio>
+			<audio id="lose" src="music/lose.mp3"></audio>
+			<audio id="draw" src="music/tie.mp3"></audio>
+
+		</div>
+	</section>
+
+	<footer>
+		<table class="counter">
+			<tr>
+				<td class="xwins" id="xwins">X's wins:</td>
+				<td class="allGames" id="allGames">All games:</td>
+				<td class="ywins" id="ywins">O's wins:</td>
+			</tr>
+			<tr>
+				<td class="xcount" id="xcount">0</td>
+				<td class="allGamess" id="allGamess">0</td>
+				<td class="ycount" id="ycount">0</td>
+			</tr>
+		</table>
+	
+		<div class="footer">
+			© Chris Godnic
+	   </div>
+	</footer>
+
+	<script src="tictacgame.js">
+	</script>
+</body>
+</html>

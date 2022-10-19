@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" lang="sl-SI">
+	<title> X-O </title>
+	<link rel="icon" href="photos/logo.png" type="image/x-icon">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="styles.css">
+	<script src="script.js" defer></script>
+	
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Bigshot+One&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Calligraffitti&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Calligraffitti&family=Cormorant+Upright:wght@600&family=Paprika&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+</head>
+
+<script>
+</script>
+<body>
+<div class="image"></div>
+<head>
+	
+	<div class="header">
+		<h1>X VS O</h1>
+	</div>
+</head>
+
+<section>
+	<div class="column1">
+		<ul class="sidenav">
+				<a href="zacetna_stran.html"><button class="sidebutton"><span class="material-icons">videogame_asset</span><br>Change game style</button></a>
+				<!--<a href="table.html"><button class="sidebutton"><span class="material-icons">emoji_events</span><br>Best players of all time</button></a>-->
+		</ul>
+	</div>
+
+
+	<div class="column2">
+		
+		<div class="window">
+			<div class="board" id="board">
+			  <div class="cell" data-cell></div>
+			  <div class="cell" data-cell></div>
+			  <div class="cell" data-cell></div>
+			  <div class="cell" data-cell></div>
+			  <div class="cell" data-cell></div>
+			  <div class="cell" data-cell></div>
+			  <div class="cell" data-cell></div>
+			  <div class="cell" data-cell></div>
+			  <div class="cell" data-cell></div>
+			</div>
+			</div>
+		  
+			<div class="winning-message" id="winningMessage">
+			  <div data-winning-message-text ></div>
+			  <button id="restartButton">Restart</button>
+			</div>
+	</div>
+
+	<audio id="click" src="music/click.mp3"></audio>
+	<audio id="win" src="music/win.mp3"></audio>
+	<audio id="lose" src="music/lose.mp3"></audio>
+	<audio id="draw" src="music/tie.mp3"></audio>
+</section>
+
+<footer>
+	<table class="counter">
+		<tr>
+			<td class="xwins" id="xwins">X's wins:</td>
+			<td class="allGames" id="allGames">All games:</td>
+			<td class="ywins" id="ywins">O's wins:</td>
+		</tr>
+		<tr>
+			<td class="xcount" id="xcount">0</td>
+			<td class="allGamess" id="allGamess">0</td>
+			<td class="ycount" id="ycount">0</td>
+		</tr>
+	</table>
+
+	<div class="footer">
+		© Chris Godnic
+   </div>
+</footer>
+
+</body>
+</html>
